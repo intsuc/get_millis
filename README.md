@@ -12,7 +12,7 @@ Calculates `(System.nanoTime() / 1000000L) & 0x0000ffffffffffff`.
 function get_millis:init
 
 # Get the millis. The execution position must be loaded to place the template.
-execute positioned 0 0 0 run function get_millis:get_millis
+execute positioned 0 0 0 run function get_millis:
 
 # The result is split into high 32 bits (#millis[63:32] get_millis)
 # and low 32 bits (#millis[31:00] get_millis).
