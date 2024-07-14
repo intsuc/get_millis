@@ -1,3 +1,5 @@
+# (a.high, a.low) = source
+
 data modify storage get_millis: wrapper[0] set from storage get_millis: source
 execute store result score #a[31:00] get_millis run data get storage get_millis: wrapper[0] 1
 

@@ -1,3 +1,5 @@
+# a = a + b
+
 scoreboard players operation #a[63:32] get_millis += #b[63:32] get_millis
 scoreboard players operation #a[31:00] get_millis += #b[31:00] get_millis
 

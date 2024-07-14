@@ -1,3 +1,5 @@
+# calculate the initial seed (the millis) of the linear congruential generator from the first random 64-bit integer (LootTableSeed)
+
 # a = LootTableSeed
 place template get_millis:randomizable_container
 data modify storage get_millis: source set from block ~ ~ ~ LootTableSeed
