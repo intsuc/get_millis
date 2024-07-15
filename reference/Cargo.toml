@@ -1,5 +1,5 @@
 [package]
-name = "reference"
+name = "get_millis"
 version = "0.1.0"
 edition = "2021"
 publish = false
