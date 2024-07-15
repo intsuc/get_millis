@@ -1,11 +1,11 @@
 # get_millis
 
-Calculates `(System.nanoTime() / 1000000L) & 0x0000ffffffffffff`.
-
 > [!CAUTION]
 > This data pack is highly dependent on the internal implementation details of Minecraft and may not work in future versions.
 
-## Usage
+Calculates `(System.nanoTime() / 1000000L) & 0x0000ffffffffffff`.
+
+## Example usage
 
 ```mcfunction
 # Initialize once.
