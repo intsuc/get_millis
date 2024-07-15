@@ -25,13 +25,13 @@ pub fn get_millis(next_long: i64) -> i64 {
 
     let dividend = (MULTIPLIER | (MODULUS_MASK + 1)) - known;
 
-    let quotient = dividend
+    let remainder = dividend
         - ((((((dividend as u64) >> 32) + 1) as f64)
             * (((1u64 << 32) as f64) / (MULTIPLIER as f64))) as i64)
             * MULTIPLIER;
-    debug_assert!(0 <= quotient && quotient <= LOST_MAX + STEP * MAX_STEPS);
+    debug_assert!(0 <= remainder && remainder <= LOST_MAX + STEP * MAX_STEPS);
 
-    let mut next_15_0 = quotient;
+    let mut next_15_0 = remainder;
     for _ in 0..MAX_STEPS {
         if next_15_0 <= LOST_MAX {
             break;
