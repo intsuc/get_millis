@@ -63,13 +63,13 @@ fn test_get_millis() {
     impl Random {
         pub fn new(seed: i64) -> Self {
             Self {
-                seed: (seed ^ (MULTIPLIER)) & MODULUS_MASK,
+                seed: (seed ^ MULTIPLIER) & MODULUS_MASK,
             }
         }
 
         pub fn next(&mut self, bits: i64) -> i32 {
             let next_seed =
-                (self.seed.wrapping_mul(MULTIPLIER).wrapping_add(INCREMENT)) & MODULUS_MASK;
+                self.seed.wrapping_mul(MULTIPLIER).wrapping_add(INCREMENT) & MODULUS_MASK;
             self.seed = next_seed;
             (next_seed >> (MODULUS_BITS - bits)) as i32
         }
