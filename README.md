@@ -3,7 +3,7 @@
 > [!CAUTION]
 > This data pack is highly dependent on the internal implementation details of Minecraft and may not work in future versions.
 
-Calculates `(System.nanoTime() / 1000000L) & 0x0000ffffffffffff`.
+Calculates the current value of the JVM's high-resolution time source in milliseconds (`(System.nanoTime() / 1000000L) & 0x0000ffffffffffff`).
 
 ## Example usage
 

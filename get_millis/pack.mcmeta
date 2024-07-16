@@ -1,6 +1,6 @@
 {
   "pack": {
     "pack_format": 48,
-    "description": "Calculates (System.nanoTime() / 1000000L) & 0x0000ffffffffffff"
+    "description": "Calculates the current value of the JVM's high-resolution time source in milliseconds"
   }
 }
