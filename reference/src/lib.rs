@@ -7,7 +7,7 @@ const NEXT_MASK: i64 = (1 << NEXT_BITS) - 1;
 const MULTIPLIER_INVERSE: i64 = 0xdfe05bcb1365;
 const LOST_BITS: i64 = MODULUS_BITS - NEXT_BITS;
 const LOST_MAX: i64 = (1 << LOST_BITS) - 1;
-const STEP: i64 = 1004285185;
+const STEP: i64 = 0x3bdc2d01;
 const MAX_STEPS: i64 = 6;
 
 pub fn get_millis(next_long: i64) -> i64 {
@@ -23,8 +23,9 @@ pub fn get_millis(next_long: i64) -> i64 {
         .wrapping_sub(INCREMENT))
         & MODULUS_MASK;
 
-    let dividend = (MULTIPLIER | (MODULUS_MASK + 1)) - known;
+    let dividend = (MULTIPLIER + (1 << MODULUS_BITS)) - known;
 
+    // let remainder = dividend % MULTIPLIER;
     let remainder = dividend
         - ((((((dividend as u64) >> 32) + 1) as f64)
             * (((1u64 << 32) as f64) / (MULTIPLIER as f64))) as i64)
