@@ -27,11 +27,11 @@ scoreboard objectives add example dummy
 
 data modify storage example: times set value []
 function get_millis:api/get {target: "storage example: times", op: "append"}
-reload
+  reload
 function get_millis:api/get {target: "storage example: times", op: "append"}
-reload
+  reload
 function get_millis:api/get {target: "storage example: times", op: "append"}
-reload
+  reload
 function get_millis:api/get {target: "storage example: times", op: "append"}
 
 execute store result score #1 example run function get_millis:api/resolve {target: "storage example: times[0]"}
