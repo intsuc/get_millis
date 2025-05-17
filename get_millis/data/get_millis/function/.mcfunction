@@ -1,9 +1,11 @@
 # calculate the initial seed (the millis) of the linear congruential generator from the first random 64-bit integer (LootTableSeed)
 
+execute unless data storage get_millis: wrapper run function get_millis:internal/init
+
 # a = LootTableSeed
 execute in get_millis:empty run place template get_millis:randomizable_container 264 8 264
 execute in get_millis:empty run data modify storage get_millis: source set from block 264 8 264 LootTableSeed
-function get_millis:split
+function get_millis:internal/split
 
 # seed = a
 scoreboard players operation #seed[63:32] get_millis = #a[63:32] get_millis
@@ -17,17 +19,17 @@ scoreboard players set #a[63:32] get_millis 0
 scoreboard players operation #a[31:00] get_millis = #seed[63:32] get_millis
 scoreboard players set #b[63:32] get_millis 5
 scoreboard players set #b[31:00] get_millis -554899859
-function get_millis:mul
+function get_millis:internal/mul
 
 # a = seed.low - a
 scoreboard players operation #b[63:32] get_millis = #a[63:32] get_millis
 scoreboard players operation #b[31:00] get_millis = #a[31:00] get_millis
 scoreboard players set #a[63:32] get_millis 0
 scoreboard players operation #a[31:00] get_millis = #seed[31:00] get_millis
-function get_millis:sub
+function get_millis:internal/sub
 
 # a = a << 16
-function get_millis:shl_16
+function get_millis:internal/shl_16
 
 # a = a - 0xb
 execute if score #a[31:00] get_millis matches 0..10 run scoreboard players remove #a[63:32] get_millis 1
@@ -47,7 +49,7 @@ scoreboard players set #a[63:32] get_millis 65541
 scoreboard players set #a[31:00] get_millis -554899859
 scoreboard players operation #b[63:32] get_millis = #c[63:32] get_millis
 scoreboard players operation #b[31:00] get_millis = #c[31:00] get_millis
-function get_millis:sub
+function get_millis:internal/sub
 
 # d = a
 scoreboard players operation #d[63:32] get_millis = #a[63:32] get_millis
@@ -59,29 +61,29 @@ execute store result score #a[31:00] get_millis run data get storage get_millis:
 scoreboard players set #a[63:32] get_millis 0
 scoreboard players set #b[63:32] get_millis 5
 scoreboard players set #b[31:00] get_millis -554899859
-function get_millis:mul
+function get_millis:internal/mul
 
 # a = a - d
 scoreboard players operation #b[63:32] get_millis = #a[63:32] get_millis
 scoreboard players operation #b[31:00] get_millis = #a[31:00] get_millis
 scoreboard players operation #a[63:32] get_millis = #d[63:32] get_millis
 scoreboard players operation #a[31:00] get_millis = #d[31:00] get_millis
-function get_millis:sub
+function get_millis:internal/sub
 
 # a = solve(a)
-function get_millis:solve
+function get_millis:internal/solve
 
 # a = c + a.low
 scoreboard players set #b[63:32] get_millis 0
 scoreboard players operation #b[31:00] get_millis = #a[31:00] get_millis
 scoreboard players operation #a[63:32] get_millis = #c[63:32] get_millis
 scoreboard players operation #a[31:00] get_millis = #c[31:00] get_millis
-function get_millis:add
+function get_millis:internal/add
 
 # a = a * 0x0000dfe0_5bcb1365
 scoreboard players set #b[63:32] get_millis 57312
 scoreboard players set #b[31:00] get_millis 1540035429
-function get_millis:mul
+function get_millis:internal/mul
 
 # a = a & 0x0000ffff_ffffffff
 scoreboard players operation #a[63:32] get_millis *= #65536 get_millis
@@ -97,12 +99,12 @@ scoreboard players set #a[63:32] get_millis 0
 scoreboard players operation #a[31:00] get_millis = #seed[63:32] get_millis
 
 # a = a << 16
-function get_millis:shl_16
+function get_millis:internal/shl_16
 
 # a = a + d
 scoreboard players operation #b[63:32] get_millis = #d[63:32] get_millis
 scoreboard players operation #b[31:00] get_millis = #d[31:00] get_millis
-function get_millis:add
+function get_millis:internal/add
 
 # a = a - 0xb
 execute if score #a[31:00] get_millis matches 0..10 run scoreboard players remove #a[63:32] get_millis 1
@@ -111,10 +113,10 @@ scoreboard players remove #a[31:00] get_millis 11
 # a = a * 0x0000dfe0_5bcb1365
 scoreboard players set #b[63:32] get_millis 57312
 scoreboard players set #b[31:00] get_millis 1540035429
-function get_millis:mul
+function get_millis:internal/mul
 
 # a = a ^ 0x00000005_deece66d
-function get_millis:unscramble_initial_seed
+function get_millis:internal/unscramble
 
 # a = a & 0x0000ffff_ffffffff
 scoreboard players operation #a[63:32] get_millis *= #65536 get_millis
