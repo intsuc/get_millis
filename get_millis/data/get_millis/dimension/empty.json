@@ -1,0 +1,11 @@
+{
+  "type": "get_millis:empty",
+  "generator": {
+    "type": "flat",
+    "settings": {
+      "structure_overrides": [],
+      "layers": [],
+      "biome": "the_void"
+    }
+  }
+}

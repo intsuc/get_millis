@@ -1,3 +1,5 @@
+execute in get_millis:empty run forceload add 264 264
+
 data modify storage get_millis: wrapper set value [I;0]
 
 scoreboard objectives add get_millis dummy
