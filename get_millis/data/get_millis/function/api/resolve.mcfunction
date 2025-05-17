@@ -1,10 +1,5 @@
-# calculate the initial seed (the millis) of the linear congruential generator from the first random 64-bit integer (LootTableSeed)
-
-execute unless data storage get_millis: wrapper run function get_millis:internal/init
-
-# a = LootTableSeed
-execute in get_millis:empty run place template get_millis:randomizable_container 264 8 264
-execute in get_millis:empty run data modify storage get_millis: source set from block 264 8 264 LootTableSeed
+# (a.high, a.low) = source
+$data modify storage get_millis: wrapper[0] set from $(target)
 function get_millis:internal/split
 
 # seed = a
@@ -124,5 +119,5 @@ scoreboard players operation #a[63:32] get_millis /= #65536 get_millis
 execute if score #a[63:32] get_millis matches ..-1 run scoreboard players add #a[63:32] get_millis 65536
 
 # millis = a
-scoreboard players operation #millis[63:32] get_millis = #a[63:32] get_millis
-return run scoreboard players operation #millis[31:00] get_millis = #a[31:00] get_millis
+scoreboard players operation #millis.high get_millis = #a[63:32] get_millis
+return run scoreboard players operation #millis.low get_millis = #a[31:00] get_millis
