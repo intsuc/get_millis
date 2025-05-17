@@ -1,5 +1,7 @@
 # (a.high, a.low) = source
 $data modify storage get_millis: wrapper[0] set from $(target)
+$execute store result score #a[63:32] get_millis run data get $(target) 0.00000000023283064365386963
+$execute store result score #temp0 get_millis run data get $(target) -0.00000000023283064365386963
 function get_millis:internal/split
 
 # seed = a

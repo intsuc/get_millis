@@ -2,9 +2,6 @@
 
 execute store result score #a[31:00] get_millis run data get storage get_millis: wrapper[0] 1
 
-execute store result score #a[63:32] get_millis run data get storage get_millis: source 0.00000000023283064365386963
-execute store result score #temp0 get_millis run data get storage get_millis: source -0.00000000023283064365386963
-
 scoreboard players operation #temp1 get_millis = #a[63:32] get_millis
 scoreboard players operation #temp1 get_millis > #temp0 get_millis
 
