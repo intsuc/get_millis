@@ -11,6 +11,7 @@ Calculates the current value of the JVM's high-resolution time source in millise
 scoreboard objectives add example dummy
 
 execute store result score #start example run function get_millis:api/get_and_resolve
+  # Run time-consuming tasks such as: 
   reload
   reload
   reload
